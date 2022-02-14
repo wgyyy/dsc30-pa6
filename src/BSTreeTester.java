@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
-public class BSTreeTest {
+public class BSTreeTester {
 
     @org.junit.Test
     public void getRoot() {
