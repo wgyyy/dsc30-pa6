@@ -3,6 +3,8 @@
  * PID:  A16131629
  */
 
+import com.sun.java.swing.plaf.windows.WindowsPopupMenuSeparatorUI;
+
 import java.util.*;
 
 /**
@@ -191,23 +193,28 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         }
     }
 
-    private boolean FindNode(BSTNode target, BSTNode input){
+    private boolean FindNode(T target, BSTNode input){
         if (input.getLeft() == null && input.getRight() == null){
-            if (input.getKey() == target.getKey()){
+            if ((input.getKey()).compareTo(target)==0){
                 return true;
             }else{
                 return false;
             }
         } else {
-            if (target.getKey().compareTo(input.getKey())<0){
+            if ((target).compareTo(input.getKey())<0){
                 if(input.getLeft()==null){
                     return false;
-                }else{
-                    return FindNode(target,input.getLeft());
+                }else if (target.compareTo(input.getLeft().getKey())==0) {
+                    return true;
                 }
-            }else{
+                else{
+                        return FindNode(target,input.getLeft());
+                    }
+            } else {
                 if(input.getRight()==null){
                     return false;
+                }else if (target.compareTo(input.getRight().getKey())==0) {
+                    return true;
                 }else{
                     return FindNode(target,input.getRight());
                 }
@@ -220,9 +227,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
             return input;
         }else {
             if (input.getKey().compareTo(target)<0){
-                return GetNode(target,input.getLeft());
-            }else{
                 return GetNode(target,input.getRight());
+            }else{
+                return GetNode(target,input.getLeft());
             }
         }
     }
@@ -270,8 +277,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         if (key == null){
             throw new NullPointerException();
         }else {
-            BSTNode newNode = new BSTNode(null, null, key);
-            return this.FindNode(newNode, this.getRoot());
+            return this.FindNode(key, this.getRoot());
         }
     }
 
