@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -177,5 +178,71 @@ public class BSTreeTester {
         iter1.next();
         actual=iter1.next();
         assertEquals(11,actual);
+    }
+
+    @Test
+    public void intersection() {
+        BSTree test1=new BSTree();
+        test1.insert(10);
+        test1.insert(5);
+        test1.insert(11);
+        test1.insert(3);
+        test1.insert(1);
+        Iterator<Integer> iter1=test1.iterator();
+        BSTree test2=new BSTree();
+        test2.insert(10);
+        test2.insert(5);
+        test2.insert(11);
+        Iterator<Integer> iter2=test2.iterator();
+        ArrayList<Integer> expect=new ArrayList<Integer>();
+        expect.add(5);
+        expect.add(10);
+        expect.add(11);
+        assertEquals(expect,test1.intersection(iter1,iter2));
+        BSTree test3=new BSTree();
+        test3.insert("h");
+        test3.insert("e");
+        test3.insert("l");
+        test3.insert("l");
+        test3.insert("o");
+        Iterator<String> iter3=test3.iterator();
+        BSTree test4=new BSTree();
+        test4.insert("h");
+        test4.insert("a");
+        test4.insert("p");
+        test4.insert("p");
+        test4.insert("y");
+        Iterator<String> iter4=test4.iterator();
+        ArrayList<String> expect2=new ArrayList<String>();
+        expect2.add("h");
+        assertEquals(expect2,test3.intersection(iter3,iter4));
+        BSTree test5=new BSTree();
+        test5.insert('D');
+        test5.insert('S');
+        test5.insert('C');
+        Iterator<Character> iter5=test5.iterator();
+        BSTree test6=new BSTree();
+        test6.insert('C');
+        test6.insert('S');
+        test6.insert('E');
+        Iterator<Character> iter6=test6.iterator();
+        ArrayList<Character> expect3=new ArrayList<Character>();
+        expect3.add('C');
+        expect3.add('S');
+        assertEquals(expect3,test5.intersection(iter5,iter6));
+    }
+
+    @Test
+    public void levelMax(){
+        BSTree test1=new BSTree();
+        test1.insert(10);
+        test1.insert(5);
+        test1.insert(11);
+        test1.insert(3);
+        test1.insert(1);
+        assertEquals(10,test1.levelMax(0));
+        assertEquals(11,test1.levelMax(1));
+        assertEquals(3,test1.levelMax(2));
+        assertNull(test1.levelMax(4));
     }
 }

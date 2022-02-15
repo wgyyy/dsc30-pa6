@@ -364,7 +364,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
         }
 
         public boolean hasNext() {
-            if(nelems==0) {
+            if(Ite.isEmpty()) {
                 return false;
             } else {
                 return true;
@@ -396,12 +396,35 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
     /* * * * * Extra Credit Methods * * * * */
 
     public ArrayList<T> intersection(Iterator<T> iter1, Iterator<T> iter2) {
-        /* TODO */
-        return null;
+        ArrayList<T> first=new ArrayList<T>();
+        ArrayList<T> second=new ArrayList<T>();
+        ArrayList<T> result=new ArrayList<T>();
+        while (iter1.hasNext()){
+            first.add(iter1.next());
+        }
+        while (iter2.hasNext()){
+            second.add(iter2.next());
+        }
+        for (int i=0; i<first.size();i++){
+            if (second.contains(first.get(i))){
+                result.add(first.get(i));
+            }
+        }
+        return result;
     }
 
     public T levelMax(int level) {
-        /* TODO */
-        return null;
+        if (level > this.findHeight()) {
+            return null;
+        }
+        BSTNode current = this.getRoot();
+        for (int i = 0; i < level; i++) {
+            if (findHeightHelper(current.getRight()) < level - i - 1) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return current.getKey();
     }
 }
