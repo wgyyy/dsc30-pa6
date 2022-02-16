@@ -45,24 +45,29 @@ public class SearchEngine {
                 String rating = scanner.nextLine().trim();
                 scanner.nextLine();
 
-                for (int i = 0; i < cast.length; i++){
+                for (int i = 0; i < cast.length; i++) {
 
                     movieTree.insert(cast[i].toLowerCase());
-                    if(movieTree.findDataList(cast[i].toLowerCase()).isEmpty()){
-                        movieTree.insertData(cast[i].toLowerCase(), movie.toLowerCase());
-                    }else {
-                        if (!movieTree.findDataList(cast[i].toLowerCase()).contains(movie.toLowerCase())) {
-                            movieTree.insertData(cast[i].toLowerCase(), movie.toLowerCase());
+                    if (movieTree.findDataList(cast[i].toLowerCase()).isEmpty()) {
+                        movieTree.insertData(cast[i].toLowerCase(),
+                                movie.toLowerCase());
+                    } else {
+                        if (!movieTree.findDataList(cast[i].toLowerCase()).
+                                contains(movie.toLowerCase())) {
+                            movieTree.insertData(cast[i].toLowerCase(),
+                                    movie.toLowerCase());
                         }
                     }
                     ratingTree.insert(cast[i].toLowerCase());
-                    if (!ratingTree.findDataList(cast[i].toLowerCase()).contains(rating)) {
+                    if (!ratingTree.findDataList(cast[i].toLowerCase()
+                    ).contains(rating)) {
                         ratingTree.insertData(cast[i].toLowerCase(), rating);
                     }
                 }
                 for (int n = 0; n < studios.length; n++){
                     studioTree.insert(studios[n].toLowerCase());
-                    studioTree.insertData(studios[n].toLowerCase(), movie.toLowerCase());
+                    studioTree.insertData(studios[n].toLowerCase(),
+                            movie.toLowerCase());
                 }
 
 
@@ -87,7 +92,7 @@ public class SearchEngine {
 
         // search and output intersection results
         // hint: list's addAll() and retainAll() methods could be helpful
-       if (keys.length>=2){
+        if (keys.length >= 2) {
            LinkedList<String> result=new LinkedList<String>();
            result.addAll(searchTree.findDataList(keys[0]));
            for (int i=1;i<keys.length;i++){

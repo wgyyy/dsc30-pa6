@@ -93,6 +93,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @return The linked list of the node
          */
         public LinkedList<T> getDataList() {
+
             return this.dataList;
         }
 
@@ -102,6 +103,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @param newleft New left child
          */
         public void setleft(BSTNode newleft) {
+
             this.left=newleft;
         }
 
@@ -111,6 +113,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @param newright New right child
          */
         public void setright(BSTNode newright) {
+
             this.right=newright;
         }
 
@@ -120,6 +123,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @param newData New linked list
          */
         public void setDataList(LinkedList<T> newData) {
+
             this.dataList=newData;
         }
 
@@ -129,6 +133,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @param data New data to be appended
          */
         public void addNewInfo(T data) {
+
             this.dataList.add(data);
         }
 
@@ -140,6 +145,7 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
          * @return True if data was found, false otherwise
          */
         public boolean removeInfo(T data) {
+
             return this.dataList.remove(data);
         }
 
@@ -206,10 +212,9 @@ public class BSTree<T extends Comparable<? super T>> implements Iterable {
                     return false;
                 }else if (target.compareTo(input.getLeft().getKey())==0) {
                     return true;
-                }
-                else{
+                } else{
                         return FindNode(target,input.getLeft());
-                    }
+                }
             } else {
                 if(input.getRight()==null){
                     return false;
